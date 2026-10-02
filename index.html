@@ -1,763 +1,301 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer & Designer Portfolio</title>
-    
-    <!-- Google Fonts: Inter & Outfit -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Configure Tailwind Dark Mode and Custom Colors
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0f5ff',
-                            100: '#e0ebff',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            800: '#1e40af',
-                            accent: '#6366f1'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Outfit', 'sans-serif']
-                    }
-                }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mason Lo | Finance & Supply Chain Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              900: '#1e3a8a',
             }
+          }
         }
-    </script>
-    
-    <!-- Theme Toggle Script to Prevent FOUC -->
-    <script>
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
-
-    <style>
-        /* Custom Animations & Styles */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
-        }
-        
-        /* Glassmorphism utility */
-        .glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .dark .glass {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-    </style>
+      }
+    }
+  </script>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased transition-colors duration-300 min-h-screen flex flex-col">
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans antialiased">
 
-    <!-- ================================================================= -->
-    <!-- HEADER & NAVIGATION                                              -->
-    <!-- ================================================================= -->
-    <header class="sticky top-0 z-50 glass border-b border-slate-200/50 dark:border-slate-800/50 transition-colors">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            
-            <!-- EDITABLE: Brand Logo / Name -->
-            <a href="#hero" class="font-heading font-bold text-xl tracking-tight text-slate-900 dark:text-white flex items-center gap-2 group">
-                <span class="w-8 h-8 rounded-lg bg-brand-600 text-white flex items-center justify-center font-extrabold text-lg group-hover:scale-105 transition-transform">
-                    P
-                </span>
-                <span>Portfolio<span class="text-brand-600 dark:text-brand-500">.</span></span>
-            </a>
-
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-                <a href="#about" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">About</a>
-                <a href="#resume" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Experience</a>
-                <a href="#projects" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Projects</a>
-                <a href="#contact" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Contact</a>
-            </nav>
-
-            <!-- Actions: Theme Switcher & Resume CTA -->
-            <div class="flex items-center gap-3">
-                <!-- Theme Toggle Button -->
-                <button id="theme-toggle" aria-label="Toggle theme" class="p-2 rounded-xl bg-slate-200/60 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
-                    <i id="theme-toggle-dark-icon" class="fas font-solid fa-moon hidden text-base"></i>
-                    <i id="theme-toggle-light-icon" class="fas font-solid fa-sun hidden text-base text-amber-400"></i>
-                </button>
-
-                <!-- EDITABLE: Download Resume PDF Button Link -->
-                <a href="resume.pdf" download="resume.pdf" class="hidden sm:inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 active:scale-95 rounded-xl shadow-sm hover:shadow-brand-500/20 transition-all">
-                    <i class="fa-solid fa-download text-xs"></i>
-                    <span>Resume</span>
-                </a>
-
-                <!-- Mobile Menu Hamburger Toggle -->
-                <button id="mobile-menu-btn" aria-label="Open navigation menu" class="md:hidden p-2 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800">
-                    <i class="fa-solid fa-bars text-xl"></i>
-                </button>
-            </div>
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <a href="#" class="font-bold text-xl tracking-tight text-brand-600 dark:text-brand-500">Mason Lo</a>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#about" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">About</a>
+          <a href="#experience" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Experience</a>
+          <a href="#leadership" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Leadership</a>
+          <a href="#skills" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Skills</a>
+          <a href="#contact" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Contact</a>
+          <a href="resume.pdf" target="_blank" class="px-4 py-2 text-sm font-medium text-white bg-brand-600 rounded-lg hover:bg-brand-700 transition-colors">
+            Resume <i class="fas font-solid fa-arrow-down-long ml-1"></i>
+          </a>
+          <button id="themeToggle" class="p-2 text-gray-500 dark:text-gray-400 hover:text-brand-600 rounded-lg">
+            <i class="fas fa-moon dark:hidden"></i>
+            <i class="fas fa-sun hidden dark:inline"></i>
+          </button>
         </div>
-
-        <!-- Mobile Menu Drawer -->
-        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 px-4 pt-2 pb-6 space-y-3 font-medium">
-            <a href="#about" class="mobile-nav-link block py-2 border-b border-slate-100 dark:border-slate-800">About</a>
-            <a href="#resume" class="mobile-nav-link block py-2 border-b border-slate-100 dark:border-slate-800">Experience & Resume</a>
-            <a href="#projects" class="mobile-nav-link block py-2 border-b border-slate-100 dark:border-slate-800">Projects</a>
-            <a href="#contact" class="mobile-nav-link block py-2 border-b border-slate-100 dark:border-slate-800">Contact</a>
-            <a href="resume.pdf" download="resume.pdf" class="flex items-center justify-center gap-2 w-full py-2.5 mt-2 text-sm font-semibold text-white bg-brand-600 rounded-xl">
-                <i class="fa-solid fa-download"></i> Download Resume
-            </a>
-        </div>
-    </header>
-
-    <main class="flex-grow">
-        <!-- ================================================================= -->
-        <!-- HERO SECTION                                                      -->
-        <!-- ================================================================= -->
-        <section id="hero" class="relative py-20 lg:py-28 overflow-hidden">
-            <!-- Background Glow Decor -->
-            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500/10 dark:bg-brand-500/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
-
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-16">
-                    
-                    <!-- Left Column: Introductory Text -->
-                    <div class="flex-1 text-center md:text-left space-y-6">
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950/60 border border-brand-200 dark:border-brand-800/50 text-brand-700 dark:text-brand-300 text-xs font-semibold tracking-wide">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            Available for New Projects & Roles
-                        </div>
-
-                        <!-- EDITABLE: Hero Headline & Role -->
-                        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
-                            Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-indigo-600 dark:from-brand-400 dark:to-indigo-400">Alex Morgan</span>
-                        </h1>
-
-                        <!-- EDITABLE: Tagline/Subheading -->
-                        <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
-                            Full-Stack Software Engineer & Digital Architect. I build exceptional, accessible, and high-performance digital experiences for the modern web.
-                        </p>
-
-                        <!-- CTA Buttons -->
-                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
-                            <a href="#contact" class="px-6 py-3.5 text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-lg shadow-brand-600/25 active:scale-95 transition-all">
-                                Get In Touch
-                            </a>
-                            <!-- EDITABLE: Resume PDF Link -->
-                            <a href="resume.pdf" download="resume.pdf" class="px-6 py-3.5 text-base font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl active:scale-95 transition-all flex items-center gap-2">
-                                <i class="fa-solid fa-file-pdf text-red-500"></i>
-                                View Resume
-                            </a>
-                        </div>
-
-                        <!-- EDITABLE: Social Links Quick Access -->
-                        <div class="flex items-center justify-center md:justify-start gap-5 pt-4 text-slate-500 dark:text-slate-400 text-xl">
-                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 dark:hover:text-white transition-colors" aria-label="GitHub">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
-                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors" aria-label="LinkedIn">
-                                <i class="fa-brands fa-linkedin"></i>
-                            </a>
-                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="hover:text-sky-500 transition-colors" aria-label="Twitter">
-                                <i class="fa-brands fa-x-twitter"></i>
-                            </a>
-                            <a href="mailto:alex@example.com" class="hover:text-red-500 transition-colors" aria-label="Email">
-                                <i class="fa-solid fa-envelope"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: Headshot Photo Frame -->
-                    <!-- EDITABLE SECTION: Headshot Image Path -->
-                    <div class="relative flex-shrink-0">
-                        <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-3xl p-2 bg-gradient-to-tr from-brand-500 via-indigo-500 to-purple-500 shadow-2xl animate-float">
-                            <div class="w-full h-full rounded-[1.25rem] overflow-hidden bg-slate-200 dark:bg-slate-800 relative">
-                                <!-- Headshot Image with Automatic Unsplash Fallback if local headshot.jpg is missing -->
-                                <img 
-                                    src="headshot.jpg" 
-                                    alt="Alex Morgan Headshot" 
-                                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800';" 
-                                    class="w-full h-full object-cover object-center"
-                                />
-                            </div>
-                        </div>
-
-                        <!-- Decorative Floating Badges -->
-                        <div class="absolute -bottom-4 -left-4 glass px-4 py-2.5 rounded-2xl border border-slate-200/50 dark:border-slate-800/50 shadow-lg flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-code"></i>
-                            </div>
-                            <div class="text-xs">
-                                <p class="font-bold text-slate-900 dark:text-white">5+ Years</p>
-                                <p class="text-slate-500 dark:text-slate-400">Engineering Experience</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================================================= -->
-        <!-- ABOUT ME SECTION                                                  -->
-        <!-- ================================================================= -->
-        <section id="about" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Get To Know Me</h2>
-                    <p class="font-heading text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">About Me</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-                    
-                    <!-- EDITABLE SECTION: Personal Bio Paragraphs -->
-                    <div class="md:col-span-7 space-y-5 text-slate-600 dark:text-slate-300 text-base leading-relaxed">
-                        <p class="text-lg font-medium text-slate-800 dark:text-slate-200">
-                            I am a passionate software developer based in San Francisco, CA. I specialize in building robust web applications, crafting scalable APIs, and designing seamless user experiences.
-                        </p>
-                        <p>
-                            With a strong foundation in computer science and modern front-end / back-end frameworks, I bridges the gap between technical architecture and intuitive design. When I'm not coding, you can find me contributing to open-source software, writing tech articles, or exploring hiking trails.
-                        </p>
-                        <p>
-                            My goal is to craft high-quality code that solves real-world problems and delivers exceptional value to users and businesses alike.
-                        </p>
-
-                        <!-- Key Highlights Grid -->
-                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4">
-                            <div class="p-4 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50">
-                                <p class="text-2xl font-bold text-brand-600 dark:text-brand-400 font-heading">20+</p>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Completed Projects</p>
-                            </div>
-                            <div class="p-4 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50">
-                                <p class="text-2xl font-bold text-brand-600 dark:text-brand-400 font-heading">15+</p>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Happy Clients</p>
-                            </div>
-                            <div class="p-4 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50">
-                                <p class="text-2xl font-bold text-brand-600 dark:text-brand-400 font-heading">100%</p>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Code Quality</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- EDITABLE SECTION: Core Skill Badges Grid -->
-                    <div class="md:col-span-5 p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-                        <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white flex items-center gap-2">
-                            <i class="fa-solid fa-layer-group text-brand-600 dark:text-brand-400"></i>
-                            Core Competencies
-                        </h3>
-
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">JavaScript (ES6+)</span>
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">TypeScript</span>
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">React.js</span>
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">Next.js</span>
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">Node.js</span>
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">Express</span>
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">Tailwind CSS</span>
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">Python</span>
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">PostgreSQL</span>
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">MongoDB</span>
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">REST APIs</span>
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">GraphQL</span>
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">Docker</span>
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">Git & GitHub</span>
-                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700/60 text-slate-800 dark:text-slate-200 text-xs font-semibold">Figma</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================================================= -->
-        <!-- RESUME & EXPERIENCE SECTION                                       -->
-        <!-- ================================================================= -->
-        <section id="resume" class="py-20">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
-                    <div>
-                        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Career & Education</h2>
-                        <p class="font-heading text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Experience & Resume</p>
-                    </div>
-
-                    <!-- EDITABLE: Download Resume PDF Button -->
-                    <a href="resume.pdf" download="resume.pdf" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-semibold text-sm hover:opacity-90 transition-opacity self-start sm:self-auto">
-                        <i class="fa-solid fa-file-arrow-down"></i>
-                        <span>Download Full PDF</span>
-                    </a>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    
-                    <!-- EDITABLE SECTION: Work Experience Timeline -->
-                    <div>
-                        <h3 class="font-heading font-bold text-2xl text-slate-900 dark:text-white mb-8 flex items-center gap-3">
-                            <i class="fa-solid fa-briefcase text-brand-600 dark:text-brand-400"></i>
-                            Work Experience
-                        </h3>
-
-                        <div class="relative border-l-2 border-slate-200 dark:border-slate-800 ml-3 space-y-10">
-                            
-                            <!-- Job 1 -->
-                            <div class="relative pl-8">
-                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-600 ring-4 ring-white dark:ring-slate-950"></div>
-                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-brand-50 dark:bg-brand-950 text-brand-600 dark:text-brand-400 border border-brand-200 dark:border-brand-800/40">
-                                    2022 - Present
-                                </span>
-                                <h4 class="font-heading font-bold text-xl text-slate-900 dark:text-white mt-2">Senior Full Stack Engineer</h4>
-                                <p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-3">TechCorp Solutions Inc.</p>
-                                <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
-                                    <li>Architected high-throughput microservices using Node.js and TypeScript, increasing API speed by 35%.</li>
-                                    <li>Led a team of 5 developers building responsive dashboard applications in React & Next.js.</li>
-                                    <li>Mentored junior software engineers and improved code coverage to over 90%.</li>
-                                </ul>
-                            </div>
-
-                            <!-- Job 2 -->
-                            <div class="relative pl-8">
-                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-700 ring-4 ring-white dark:ring-slate-950"></div>
-                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-                                    2020 - 2022
-                                </span>
-                                <h4 class="font-heading font-bold text-xl text-slate-900 dark:text-white mt-2">Frontend Web Developer</h4>
-                                <p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-3">Creative Digital Agency</p>
-                                <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
-                                    <li>Developed 15+ custom client websites and SaaS frontends with CSS/Tailwind and React.</li>
-                                    <li>Optimized web performance and Core Web Vitals, bringing average lighthouse scores to 95+.</li>
-                                </ul>
-                            </div>
-
-                            <!-- Job 3 -->
-                            <div class="relative pl-8">
-                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-700 ring-4 ring-white dark:ring-slate-950"></div>
-                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-                                    2019 - 2020
-                                </span>
-                                <h4 class="font-heading font-bold text-xl text-slate-900 dark:text-white mt-2">Junior Software Developer</h4>
-                                <p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-3">StartUp Innovators</p>
-                                <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
-                                    <li>Built REST API endpoints and SQL database migrations using Node.js and PostgreSQL.</li>
-                                    <li>Collaborated with product design teams to implement modern UI wireframes.</li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- EDITABLE SECTION: Education & Technical Skills Column -->
-                    <div class="space-y-12">
-                        
-                        <!-- Education Block -->
-                        <div>
-                            <h3 class="font-heading font-bold text-2xl text-slate-900 dark:text-white mb-8 flex items-center gap-3">
-                                <i class="fa-solid fa-graduation-cap text-brand-600 dark:text-brand-400"></i>
-                                Education
-                            </h3>
-
-                            <div class="space-y-6">
-                                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
-                                    <span class="text-xs font-semibold text-brand-600 dark:text-brand-400">2015 - 2019</span>
-                                    <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white mt-1">B.S. in Computer Science</h4>
-                                    <p class="text-sm text-slate-500 dark:text-slate-400">University of California, Berkeley</p>
-                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Graduated with Honors. Focus on Software Engineering & Data Structures.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Technical Competency Progress -->
-                        <div>
-                            <h3 class="font-heading font-bold text-2xl text-slate-900 dark:text-white mb-6 flex items-center gap-3">
-                                <i class="fa-solid fa-sliders text-brand-600 dark:text-brand-400"></i>
-                                Technical Expertise
-                            </h3>
-
-                            <div class="space-y-4">
-                                <div>
-                                    <div class="flex justify-between text-sm font-semibold mb-1">
-                                        <span class="text-slate-800 dark:text-slate-200">Frontend Development (React, Next, Tailwind)</span>
-                                        <span class="text-brand-600 dark:text-brand-400">95%</span>
-                                    </div>
-                                    <div class="w-full h-2.5 rounded-full bg-slate-200 dark:bg-slate-800">
-                                        <div class="h-2.5 rounded-full bg-brand-600 w-[95%]"></div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <div class="flex justify-between text-sm font-semibold mb-1">
-                                        <span class="text-slate-800 dark:text-slate-200">Backend Engineering (Node.js, Express, Python)</span>
-                                        <span class="text-brand-600 dark:text-brand-400">88%</span>
-                                    </div>
-                                    <div class="w-full h-2.5 rounded-full bg-slate-200 dark:bg-slate-800">
-                                        <div class="h-2.5 rounded-full bg-brand-600 w-[88%]"></div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <div class="flex justify-between text-sm font-semibold mb-1">
-                                        <span class="text-slate-800 dark:text-slate-200">Databases & Architecture (PostgreSQL, Mongo)</span>
-                                        <span class="text-brand-600 dark:text-brand-400">82%</span>
-                                    </div>
-                                    <div class="w-full h-2.5 rounded-full bg-slate-200 dark:bg-slate-800">
-                                        <div class="h-2.5 rounded-full bg-brand-600 w-[82%]"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================================================= -->
-        <!-- PROJECTS SHOWCASE SECTION                                         -->
-        <!-- ================================================================= -->
-        <section id="projects" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-t border-slate-200/60 dark:border-slate-800/60">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Featured Work</h2>
-                    <p class="font-heading text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Recent Projects</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
-                    <!-- EDITABLE SECTION: Project Card 1 -->
-                    <div class="group rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
-                        <div class="aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
-                            <!-- Replace src with your project image -->
-                            <img 
-                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" 
-                                alt="Analytics Dashboard Preview" 
-                                onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e293b/ffffff?text=Project+Preview';"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                            <div>
-                                <div class="flex flex-wrap gap-2 mb-3">
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-brand-50 text-brand-600 dark:bg-brand-950/80 dark:text-brand-300">React</span>
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">Tailwind</span>
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">Chart.js</span>
-                                </div>
-                                <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                                    SaaS Analytics Dashboard
-                                </h3>
-                                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">
-                                    A real-time data visualization dashboard featuring custom charting widgets, user metrics tracking, and dark mode controls.
-                                </p>
-                            </div>
-                            <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-sm font-semibold">
-                                <a href="https://github.com" target="_blank" rel="noopener" class="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5">
-                                    <i class="fa-brands fa-github text-base"></i> Code
-                                </a>
-                                <a href="#" class="text-brand-600 dark:text-brand-400 hover:underline flex items-center gap-1.5">
-                                    Live Demo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- EDITABLE SECTION: Project Card 2 -->
-                    <div class="group rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
-                        <div class="aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
-                            <!-- Replace src with your project image -->
-                            <img 
-                                src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=800" 
-                                alt="E-Commerce Storefront Preview" 
-                                onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e293b/ffffff?text=Project+Preview';"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                            <div>
-                                <div class="flex flex-wrap gap-2 mb-3">
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-brand-50 text-brand-600 dark:bg-brand-950/80 dark:text-brand-300">Next.js</span>
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">Stripe</span>
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">PostgreSQL</span>
-                                </div>
-                                <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                                    Modern E-Commerce Engine
-                                </h3>
-                                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">
-                                    Full-stack digital store with fast checkout, cart persistence, custom payment integrations, and admin inventory controls.
-                                </p>
-                            </div>
-                            <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-sm font-semibold">
-                                <a href="https://github.com" target="_blank" rel="noopener" class="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5">
-                                    <i class="fa-brands fa-github text-base"></i> Code
-                                </a>
-                                <a href="#" class="text-brand-600 dark:text-brand-400 hover:underline flex items-center gap-1.5">
-                                    Live Demo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- EDITABLE SECTION: Project Card 3 -->
-                    <div class="group rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
-                        <div class="aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
-                            <!-- Replace src with your project image -->
-                            <img 
-                                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" 
-                                alt="AI Task Manager Preview" 
-                                onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e293b/ffffff?text=Project+Preview';"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                            <div>
-                                <div class="flex flex-wrap gap-2 mb-3">
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-brand-50 text-brand-600 dark:bg-brand-950/80 dark:text-brand-300">TypeScript</span>
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">OpenAI API</span>
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">Node.js</span>
-                                </div>
-                                <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                                    AI Productivity Workspace
-                                </h3>
-                                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">
-                                    Intelligent task management assistant that synthesizes notes, generates task priorities, and automates daily workflow organization.
-                                </p>
-                            </div>
-                            <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-sm font-semibold">
-                                <a href="https://github.com" target="_blank" rel="noopener" class="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5">
-                                    <i class="fa-brands fa-github text-base"></i> Code
-                                </a>
-                                <a href="#" class="text-brand-600 dark:text-brand-400 hover:underline flex items-center gap-1.5">
-                                    Live Demo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================================================= -->
-        <!-- CONTACT SECTION                                                   -->
-        <!-- ================================================================= -->
-        <section id="contact" class="py-20">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                    
-                    <!-- EDITABLE SECTION: Contact Info Left Column -->
-                    <div class="lg:col-span-5 space-y-8">
-                        <div>
-                            <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Let's Connect</h2>
-                            <p class="font-heading text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Get In Touch</p>
-                            <p class="text-slate-600 dark:text-slate-400 mt-4 leading-relaxed">
-                                Whether you have a question, a potential project opportunity, or just want to say hi, my inbox is always open!
-                            </p>
-                        </div>
-
-                        <div class="space-y-6 text-sm">
-                            <div class="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                                <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl flex-shrink-0">
-                                    <i class="fa-solid fa-envelope"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">Email Address</p>
-                                    <a href="mailto:alex.morgan@example.com" class="font-bold text-slate-900 dark:text-white hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
-                                        alex.morgan@example.com
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                                <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl flex-shrink-0">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">Location</p>
-                                    <p class="font-bold text-slate-900 dark:text-white">San Francisco, CA (Remote Available)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contact Form Right Column -->
-                    <div class="lg:col-span-7 p-8 sm:p-10 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
-                        <form id="portfolio-contact-form" class="space-y-6">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Your Name</label>
-                                    <input 
-                                        type="text" 
-                                        id="name" 
-                                        required
-                                        placeholder="Jane Doe" 
-                                        class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all text-sm"
-                                    />
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Your Email</label>
-                                    <input 
-                                        type="email" 
-                                        id="email" 
-                                        required
-                                        placeholder="jane@example.com" 
-                                        class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all text-sm"
-                                    />
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="subject" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Subject</label>
-                                <input 
-                                    type="text" 
-                                    id="subject" 
-                                    required
-                                    placeholder="Project Inquiry / Job Opportunity" 
-                                    class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all text-sm"
-                                />
-                            </div>
-
-                            <div>
-                                <label for="message" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Message</label>
-                                <textarea 
-                                    id="message" 
-                                    rows="5" 
-                                    required
-                                    placeholder="Tell me about your project..." 
-                                    class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all text-sm"
-                                ></textarea>
-                            </div>
-
-                            <button 
-                                type="submit" 
-                                class="w-full py-4 px-6 text-sm font-bold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-lg shadow-brand-600/25 active:scale-[0.99] transition-all flex items-center justify-center gap-2"
-                            >
-                                <i class="fa-solid fa-paper-plane"></i>
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ================================================================= -->
-    <!-- FOOTER                                                            -->
-    <!-- ================================================================= -->
-    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-8 text-center text-xs text-slate-500 dark:text-slate-400">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <!-- EDITABLE: Footer Copyright Text -->
-            <p>&copy; <span id="current-year"></span> Alex Morgan. All rights reserved.</p>
-            <p class="flex items-center gap-1">
-                Designed & Built with <i class="fa-solid fa-heart text-red-500"></i> using HTML & Tailwind CSS
-            </p>
-        </div>
-    </footer>
-
-    <!-- Toast Notification Overlay for Form Feedback -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-2xl border border-slate-800 dark:border-slate-200 text-sm font-medium">
-            <i class="fa-solid fa-circle-check text-emerald-500 text-lg"></i>
-            <span id="toast-message">Message sent successfully!</span>
-        </div>
+      </div>
     </div>
+  </nav>
 
-    <!-- ================================================================= -->
-    <!-- CLIENT JAVASCRIPT                                                 -->
-    <!-- ================================================================= -->
-    <script>
-        // Set Current Year in Footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+  <!-- Hero Section -->
+  <header class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+      <div class="flex-1 space-y-6 text-center md:text-left">
+        <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-600 bg-brand-50 dark:bg-brand-900/40 dark:text-brand-400 rounded-full">
+          Finance & Supply Chain Management
+        </span>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight">
+          Hi, I'm <span class="text-brand-600 dark:text-brand-500">Mason Lo</span>
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
+          Honors Student at Rutgers Business School specializing in Real Estate Concentration, Debt Strategies, Financial Modeling, and Technical Systems.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+          <a href="#contact" class="px-6 py-3 bg-brand-600 text-white font-medium rounded-lg hover:bg-brand-700 transition-colors">Get in Touch</a>
+          <a href="resume.pdf" target="_blank" class="px-6 py-3 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-medium rounded-lg hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">Download Resume</a>
+        </div>
+        <div class="flex items-center justify-center md:justify-start space-x-6 text-xl text-gray-600 dark:text-gray-400">
+          <a href="https://www.linkedin.com/in/mason-lo-095395385/" target="_blank" class="hover:text-brand-600 transition-colors"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:masonylo2007@icloud.com" class="hover:text-brand-600 transition-colors"><i class="fas fa-envelope"></i></a>
+          <a href="tel:9174469455" class="hover:text-brand-600 transition-colors"><i class="fas fa-phone"></i></a>
+        </div>
+      </div>
+      
+      <!-- Headshot Container -->
+      <div class="relative w-64 h-64 sm:w-80 sm:h-80 flex-shrink-0">
+        <div class="absolute inset-0 bg-brand-600 rounded-2xl rotate-6 opacity-20"></div>
+        <img 
+          src="headshot.jpg" 
+          alt="Mason Lo Headshot" 
+          onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'"
+          class="relative w-full h-full object-cover rounded-2xl shadow-xl border-2 border-white dark:border-gray-800"
+        />
+      </div>
+    </div>
+  </header>
 
-        // Dark/Light Theme Switching Logic
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const darkIcon = document.getElementById('theme-toggle-dark-icon');
-        const lightIcon = document.getElementById('theme-toggle-light-icon');
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-white dark:bg-gray-800/50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">About Me</h2>
+      <div class="grid md:grid-cols-2 gap-8 items-start">
+        <div class="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+          <p>
+            I am a B.S. candidate in Finance and Supply Chain Management at Rutgers Business School - Honors College (Concentration in Real Estate), graduating in May 2029.
+          </p>
+          <p>
+            My experience spans debt underwriting, financial modeling, real estate loan sizing, risk management, and software integration. I am passionate about blending data analytics and finance to build scalable solutions.
+          </p>
+          <!-- EDITABLE SECTION: Add custom text here -->
+          <div class="p-4 bg-brand-50 dark:bg-gray-800 rounded-lg border border-brand-100 dark:border-gray-700">
+            <p class="text-sm text-brand-900 dark:text-brand-300 font-medium">
+              <!-- EDITABLE TEXT AREA -->
+              Custom Note: Open to Summer 2027 internship opportunities in Commercial Real Estate, Investment Banking, Debt Strategies, and Financial Analytics.
+            </p>
+          </div>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-700 space-y-4">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Education Details</h3>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li><strong class="text-gray-900 dark:text-white">Institution:</strong> Rutgers Business School - Honors College</li>
+            <li><strong class="text-gray-900 dark:text-white">Location:</strong> New Brunswick, NJ</li>
+            <li><strong class="text-gray-900 dark:text-white">Degree:</strong> B.S. Finance & Supply Chain Management</li>
+            <li><strong class="text-gray-900 dark:text-white">Concentration:</strong> Real Estate</li>
+            <li><strong class="text-gray-900 dark:text-white">GPA:</strong> 3.93 / 4.0</li>
+            <li><strong class="text-gray-900 dark:text-white">Honors:</strong> Dean's List (All Semesters), Dean’s Scholarship</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        function updateThemeIcons() {
-            if (document.documentElement.classList.contains('dark')) {
-                darkIcon.classList.add('hidden');
-                lightIcon.classList.remove('hidden');
-            } else {
-                darkIcon.classList.remove('hidden');
-                lightIcon.classList.add('hidden');
-            }
-        }
-        updateThemeIcons();
+  <!-- Experience Section -->
+  <section id="experience" class="py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Professional Experience</h2>
+      <div class="space-y-8">
+        
+        <!-- Bridge Investment Group -->
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+          <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-4">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">Summer Analyst, Debt Strategies</h3>
+              <p class="text-brand-600 dark:text-brand-400 font-medium">Bridge Investment Group | New York, NY</p>
+            </div>
+            <span class="text-sm text-gray-500 mt-1 sm:mt-0">Jun 2026 - Aug 2026</span>
+          </div>
+          <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2 text-sm">
+            <li>Analyzed and sized over 50 properties from originators to be used by analysts for quoting and underwriting.</li>
+            <li>Integrated company-wide AI sizing model in Claude skills to improve sizing efficiency by 40% within Excel.</li>
+            <li>Distributed 3 tombstone ads to 20+ brokerage companies, displaying 10 completed deals throughout 2026.</li>
+          </ul>
+        </div>
 
-        themeToggleBtn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            if (document.documentElement.classList.contains('dark')) {
-                localStorage.theme = 'dark';
-            } else {
-                localStorage.theme = 'light';
-            }
-            updateThemeIcons();
-        });
+        <!-- 400 Capital Management -->
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+          <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-4">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">Summer Analyst, Risk Management</h3>
+              <p class="text-brand-600 dark:text-brand-400 font-medium">400 Capital Management | New York, NY</p>
+            </div>
+            <span class="text-sm text-gray-500 mt-1 sm:mt-0">Jun 2024 - Aug 2024</span>
+          </div>
+          <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2 text-sm">
+            <li>Completed project for a PnL monitor, logging 1000+ active positions daily on newly integrated software.</li>
+            <li>Functioned on a team for distribution of internal bi-weekly newsletters from Bloomberg live keynotes.</li>
+            <li>Studied directly under 5 sector department heads to learn hedge fund operations and portfolio risk management.</li>
+          </ul>
+        </div>
 
-        // Mobile Drawer Toggle Logic
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+      </div>
+    </div>
+  </section>
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+  <!-- Leadership & Entrepreneurship -->
+  <section id="leadership" class="py-16 bg-white dark:bg-gray-800/50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Leadership & Entrepreneurship</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        
+        <!-- Novelty Innovations -->
+        <div class="p-6 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white">Co-Founder & Financial Director</h3>
+          <p class="text-sm text-brand-600 dark:text-brand-400 font-medium mb-2">Novelty Innovations | Bronxville, NY (Dec 2023 - Jul 2025)</p>
+          <ul class="text-xs text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+            <li>Developed noveltyinnovations.org website using SEO blog strategies to drive traffic.</li>
+            <li>Oversaw budgeting and financial planning, managing a $7,500 grant and revenue stream.</li>
+            <li>Partnered with NIA Brooklyn to donate STEM kits to 4,000 underprivileged children.</li>
+          </ul>
+        </div>
 
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
+        <!-- Rocket Vault -->
+        <div class="p-6 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white">Founder & CEO</h3>
+          <p class="text-sm text-brand-600 dark:text-brand-400 font-medium mb-2">Rocket Vault | Bronxville, NY (Mar 2023 - May 2025)</p>
+          <ul class="text-xs text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+            <li>Built website and managed direct digital fulfillment for 400 total customers.</li>
+            <li>Managed 3 part-time employees and 6 freelancers for specialized projects.</li>
+            <li>Handled finances, sales, and inventory across 320 unique products generating $12,000 in revenue.</li>
+          </ul>
+        </div>
 
-        // Interactive Toast Feedback Notification
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toast-message');
-            toastMessage.textContent = message;
-            
-            toast.classList.remove('translate-y-24', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
+        <!-- Rutgers Bowling Team -->
+        <div class="p-6 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white">Treasurer</h3>
+          <p class="text-sm text-brand-600 dark:text-brand-400 font-medium mb-2">Rutgers Bowling Team (Sep 2026 - Present)</p>
+          <ul class="text-xs text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+            <li>Spearheaded fundraising initiatives, boosting member turnout by 75%.</li>
+            <li>Managed club finances, projecting a 20% reduction in member dues next school year.</li>
+            <li>Implemented Storm catalog agreement with 40% discount, saving members ~$5,000.</li>
+          </ul>
+        </div>
 
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-24', 'opacity-0');
-            }, 4000);
-        }
+        <!-- TASA -->
+        <div class="p-6 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white">Visual Media Coordinator</h3>
+          <p class="text-sm text-brand-600 dark:text-brand-400 font-medium mb-2">Rutgers Taiwanese American Student Association (Sep 2026 - Present)</p>
+          <ul class="text-xs text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+            <li>Filmed, scripted, and casted 10 actors for the annual 20-minute Freestyle film.</li>
+            <li>Produced recap and promotional media for major campus initiatives and Nightmarket.</li>
+          </ul>
+        </div>
 
-        // Contact Form Handling (Prevents refresh and provides toast UI response)
-        const contactForm = document.getElementById('portfolio-contact-form');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Clear inputs
-            contactForm.reset();
-            
-            // Show custom toast UI instead of browser alerts
-            showToast('Thank you! Your message has been sent successfully.');
-        });
-    </script>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Skills & Technical Qualifications</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+          <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-3">Technical Skills</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-brand-50 dark:bg-gray-700 text-brand-700 dark:text-brand-300 text-xs font-semibold rounded-full">Python</span>
+            <span class="px-3 py-1 bg-brand-50 dark:bg-gray-700 text-brand-700 dark:text-brand-300 text-xs font-semibold rounded-full">Java</span>
+            <span class="px-3 py-1 bg-brand-50 dark:bg-gray-700 text-brand-700 dark:text-brand-300 text-xs font-semibold rounded-full">Real Estate Loan Analysis</span>
+            <span class="px-3 py-1 bg-brand-50 dark:bg-gray-700 text-brand-700 dark:text-brand-300 text-xs font-semibold rounded-full">Industrial Property Analysis</span>
+            <span class="px-3 py-1 bg-brand-50 dark:bg-gray-700 text-brand-700 dark:text-brand-300 text-xs font-semibold rounded-full">Financial Sizing Models</span>
+          </div>
+        </div>
+
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+          <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-3">Certifications & Training</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">NYC Career Centers Business Excel Course Completion</p>
+        </div>
+
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+          <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-3">Languages & Activities</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300"><strong>Languages:</strong> English (Native), Korean (Fluent)</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-2"><strong>Activities:</strong> VP of Bronxville Math Club, Rutgers Club Bowling, Intramural Soccer</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-white dark:bg-gray-800/50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Contact Mason</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Get in Touch</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Feel free to reach out regarding debt strategies, real estate modeling, leadership opportunities, or general inquiries.
+          </p>
+          <div class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <p><i class="fas fa-envelope text-brand-600 mr-2"></i> masonylo2007@icloud.com</p>
+            <p><i class="fas fa-phone text-brand-600 mr-2"></i> (917) 446-9455</p>
+            <p><i class="fab fa-linkedin text-brand-600 mr-2"></i> linkedin.com/in/mason-lo-095395385</p>
+          </div>
+        </div>
+
+        <form class="space-y-4" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+          <div>
+            <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 uppercase mb-1">Name</label>
+            <input type="text" required class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 uppercase mb-1">Email</label>
+            <input type="email" required class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 uppercase mb-1">Message</label>
+            <textarea rows="4" required class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm"></textarea>
+          </div>
+          <button type="submit" class="w-full py-3 bg-brand-600 text-white font-medium rounded-lg hover:bg-brand-700 transition-colors">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-gray-200 dark:border-gray-800 text-center text-sm text-gray-500">
+    <p>© 2026 Mason Lo. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+  </script>
 </body>
 </html>
